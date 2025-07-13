@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8" />
+    <title>Kişisel Web Sitem</title>
+    <link rel="stylesheet" href="style.css" />
+</head> 
+<body>
+    <header>
+        <nav>
+            <ul class="nav">
+                <li> <a href="#" class="nav>-link active" data-section="about">Hakkında</a></li>
+                <li> <a href="#" class="nav>-link active" data-section="projects">Projeler</a></li>
+                <li> <a href="#" class="nav>-link active" data-section="blog">Blog</a></li>
+                <li> <a href="#" class="nav>-link active" data-section="contact">İletişim</a></li>
+            </ul>
+            </nav>
+    </header>
+
+<main>
+    <section id="about" class="section active">
+        <h1>Ben Kimim?</h1>
+        <img src="profile.jpg" alt="Profil Fotoğrafı" class="profile-img"/>
+        <p>
+        Merhaba! Ben bilgisayar mühendisliği mezunuyum. Kendimi yazılım dünyasında yeniden konumlandırmak için kişisel projeler geliştiriyorum.
+        Bu web sitesi, hem teknik becerilerimi geliştirmek hem de hayat tarzımda yaptığım yenilikleri paylaşmak için oluşturuldu.
+      </p>
+    </section>
+
+    <section id="projects" class=section hidden">
+        <h1>Projelerim</h1>
+        <p>Bu alan yakında eklenecek..</p>
+    </section>
+
+    <section id="blog" class=section hidden">
+        <h1>Blogum</h1>
+        <p>Bu alan yakında eklenecek..</p>
+    </section>
+
+    <section id="contact" class=section hidden">
+        <h1>İletişim Adresi</h1>
+        <p>Bu alan yakında eklenecek..</p>
+    </section>
+</main>    
+
+    <script>
+        // Sekme Kontrolu
+        const navLinks = document.querySelectorAll('.nav-link');
+        const sections = document.querySelectorAll('.section');
+
+        navLinks.forEach(link => {
+            link.addEventListener('click', e => {
+                e.preventDefault();
+
+                // Aktif sinifini guncelle
+                navLinks.forEach(l => l.classList.remove('active'));
+                link.classList.add('active');
+
+                // Bolum gorunurlugu
+                const target = link.getAttribute('data-section');
+                sections.forEach(sec => {
+                    if (sec.id == target){ 
+                        sec.classList.remove('hidden');
+                        sec.classList.add('active');
+                    } else {
+                        sec.classList.remove('active');
+                        sec.classList.add('hidden');
+                    }
+                });
+            })
+        })
+    </script>
+</body>  
+</html> 
