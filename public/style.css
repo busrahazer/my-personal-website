@@ -1,3 +1,7 @@
+html {
+  scroll-behavior: smooth;
+}
+
 body {
     font-family: Arial, Helvetica, sans-serif;
     padding: 2rem;
@@ -52,4 +56,30 @@ main {
     border-radius: 50%;
     display: block;
     margin: 20px 0;
+}
+
+footer {
+    background-color: #333;
+    color: wheat;
+    padding: 30px 0;
+    text-align: center;
+    margin-top: 50px;
+}
+
+.social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-top: 15px;
+}
+
+.social-icons img {
+    width: 40px;
+    height: 40px;
+    transition: transform 0.3 ease;
+}
+
+.social-icons img:hoover {
+    transform: scale(1.2);
+    cursor: pointer;
 }
