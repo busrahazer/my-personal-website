@@ -2,88 +2,79 @@
 <html lang="tr">
 <head>
     <meta charset="UTF-8" />
-    <title>Kişisel Web Sitem</title>
+    <meta name="viewport" content=""width=device-width, initiai-scale="1.0"/>
+    <title>Mine Büşra Hazer</title>
     <link rel="stylesheet" href="style.css" />
 </head> 
 <body>
     <header>
-        <nav>
-            <ul class="nav">
-                <li> <a href="#about" class="nav-link">Hakkında</a></li>
-                <li> <a href="#projects" class="nav-link">Projeler</a></li>
-                <li> <a href="#blog" class="nav-link">Blog</a></li>
-                <li> <a href="#footer" class="nav-link">İletişim</a></li>
+        <nav class="navbar">
+            <ul>
+                <li><a href="#about">Hakkında</a></li>
+                <li><a href="#projects">Projelerim</a></li>
+                <li><a href="#blog">Blog</a></li>
+                <li><a href="#footer">İletişim</a></li>
             </ul>
-            </nav>
     </header>
 
+<section class="hero">
+    <h1 class="hero-title">Mine Büşra Hazer</h1>
+</section>
+
 <main>
-    <section id="about">
-        <h1>Ben Kimim?</h1>
-        <img src="profile.jpg" alt="Profil Fotoğrafı" class="profile-img"/>
-        <p>
-            Merhaba, ben <strong>Mine Büşra Hazer</strong>. Bilgisayar mühendisliği mezunuyum ve elektrikli araçlar alanında 1.5 yıl boyunca
-            yazılım mühendisi olarak çalıştım. Bu süreçte araç içi sistem arayüzleri, CAN protokolü, veri analizi ve
-            IoT iletişim sistemleri gibi alanlarda projeler geliştirdim.
-        </p>
-        <p>
-            Ar-Ge merkezli bir şirkette yürüttüğüm projelerde araç kontrol ve izleme uygulamaları geliştirdim. Araç içi
-            sistemlerde Python, C++, QT Framework, AWS ve MQTT gibi teknolojilerle yazılım çözümleri ürettim. Ayrıca 
-            araç log verilerini analiz edip görselleştiren ve anomali tespiti yapan bir sistem de geliştirdim.
-        </p>
-        <p>
-            Yazılımla yeniden bağ kurmak ve hem teknik hem de kişisel gelişim alanlarında ilerlemek adına bu web sitesini
-            oluşturmaya başladım. Aynı zamanda yaşam tarzımı da dönüştürmek üzere sağlıklı yaşam, spor ve kişisel gelişim
-            alanlarında küçük meydan okumalar (challenges) yapıyorum.
-        </p>
+    <section id="about" class="about-section">
+        <div class="about-content">
+            <div class="about-text">
+                <h2>Ben Kimim?</h2>
+                <img src="profile.jpg" alt="Profil Fotoğrafı" class="profile-img"/>
+                <p>
+                    Merhaba, ben <strong>Mine Büşra Hazer</strong>. Bilgisayar mühendisliği mezunuyum ve elektrikli araçlar alanında 1.5 yıl boyunca
+                    yazılım mühendisi olarak çalıştım. Bu süreçte araç içi sistem arayüzleri, CAN protokolü, veri analizi ve
+                    IoT iletişim sistemleri gibi alanlarda projeler geliştirdim.
+                </p>
+                <p>
+                    Ar-Ge merkezli bir şirkette yürüttüğüm projelerde araç kontrol ve izleme uygulamaları geliştirdim. Araç içi
+                    sistemlerde Python, C++, QT Framework, AWS ve MQTT gibi teknolojilerle yazılım çözümleri ürettim. Ayrıca 
+                    araç log verilerini analiz edip görselleştiren ve anomali tespiti yapan bir sistem de geliştirdim.
+                </p>
+                <p>
+                    Yazılımla yeniden bağ kurmak ve hem teknik hem de kişisel gelişim alanlarında ilerlemek adına bu web sitesini
+                    oluşturmaya başladım. Aynı zamanda yaşam tarzımı da dönüştürmek üzere sağlıklı yaşam, spor ve kişisel gelişim
+                    alanlarında küçük meydan okumalar (challenges) yapıyorum.
+                </p>
+            </div>
+        </div>
+        
     </section>
 
-    <section id="projects">
-        <h2>🔧 Amperino ToolBox – Bitirme Projesi</h2>
-        <p>
-            Bu masaüstü uygulama, elektrikli araçlar için geliştirilmiş gerçek zamanlı veri izleme ve kontrol sistemidir.
-            AWS ile veri alışverişi sağlayan arayüzü ile araç sistemleri uzaktan güncellenebilir. CAN veri hattı üzerinden
-            alınan log verileri analiz edilir, veritabanına işlenir ve etkileşimli grafiklerle kullanıcıya sunulur.
-        </p>
-        <ul>
-            <li>CAN log verilerinin sadeleştirilmesi, işlenmesi ve SQLite veritabanına kaydedilmesi</li>
-            <li>Plotly ile dinamik grafik oluşturma, anomali tespiti</li>
-            <li>AWS DynamoDB ile gerçek zamanlı veri yönetimi</li>
-            <li>CANSim entegrasyonu ile simülasyon ve test ortamı oluşturma</li>
-        </ul>
-        <p><strong>Kullanılan Teknolojiler:</strong> Python, PySide6, Plotly, SQLite, AWS, MQTT, Qt Framework</p>
+    <section id="projects" class="projects-section">
+        <h2 class="section-title">Projelerim</h2>
+        <div class="projects-grid">
 
-        <h2>📈 Vehicle Log Analysis Projesi</h2>
-        <p>
-            CAN hattından gelen log verilerini analiz ederek araç davranışlarını inceleyen bir sistem geliştirdim. Python ile
-            veri işleme, veritabanı kaydı ve grafikleştirme işlemleri gerçekleştirdim.
-        </p>
-        <ul>
-            <li>Ham verilerin sadeleştirilmesi ve kategorilere ayrılması</li>
-            <li>Grafik üzerinden anormallik tespiti (örneğin ani hız değişimi, batarya sıcaklığı)</li>
-            <li>Kullanıcıdan tarih/saat aralığı alma ve ilgili grafikleri oluşturma</li>
-        </ul>
+            <div class="project-card">
+            <h3>Amperino ToolBox</h3>
+            <p>Elektrikli araçlar için veri analiz, güncelleme ve CANbus simülasyon aracı.</p>
+            <span class="tech">Python, AWS, SQLite, Qt</span>
+            </div>
 
-        <h2>🚗 Elektrikli Araç Ekranları ve Kontrol Sistemleri</h2>
-        <p>
-            Araç içi gösterge ekranı (DIC) geliştirerek, sürücüye batarya durumu, motor RPM, sıcaklıklar, ışık uyarıları ve
-            multimedya entegrasyonu gibi bilgileri sunan sistemleri yazılım tarafında yönettim.
-        </p>
-        <ul>
-            <li>CAN mesajlarının okunması ve DBC dosyası ile yorumlanması</li>
-            <li>Harici cihazlarla (Spotify, YouTube, Harita) entegrasyon</li>
-            <li>CANSim kullanarak senaryo bazlı test simülasyonları geliştirme</li>
-        </ul>
+            <div class="project-card">
+            <h3>Vehicle Log Analyzer</h3>
+            <p>CANbus log verilerinin sadeleştirilmesi, görselleştirilmesi ve anomali analizi.</p>
+            <span class="tech">Python, Plotly, SQLite</span>
+            </div>
 
-        <h2>📱 Gallery of Memories (Kotlin – Mobil Uygulama)</h2>
-        <p>
-            Üniversite döneminde geliştirdiğim kişisel bir uygulama. Fotoğraf ve yazılarla anılar biriktirebileceğiniz bir galeri uygulamasıdır.
-        </p>
+            <div class="project-card">
+            <h3>Gallery of Memories</h3>
+            <p>Kullanıcının anılarını yazı ve görsellerle sakladığı mobil uygulama.</p>
+            <span class="tech">Kotlin, Android</span>
+            </div>
 
-        <h2>🤝 E-ASIER – İBB Ideathon Projesi</h2>
-        <p>
-            Engelli bireylerin şehir yaşamını kolaylaştırmak amacıyla tasarladığımız mobil uygulama konseptiyle İBB destekli yarışmaya katıldık.
-        </p>
+            <div class="project-card">
+            <h3>E-ASIER Ideathon</h3>
+            <p>Engellilere yönelik şehir hayatını kolaylaştıran mobil uygulama fikri.</p>
+            <span class="tech">Tasarım, Prototipleme</span>
+            </div>
+        </div>
     </section>
 
     <section id="blog">
@@ -95,7 +86,7 @@
         <h2>İletişim</h2>
         <div class="social-icons">
             <a href="https://www.linkedin.com/in/busrahazer/" target="_blank">
-                <img src="linkedin.jpg" alt="LinkedIn" />
+                <img src="linkedin.gif" alt="LinkedIn" />
             </a>
             <a href="https://github.com/busrahazer" target="_blank">
                 <img src="github.png" alt="GitHub" />
@@ -104,7 +95,7 @@
                 <img src="mail.png" alt="E-posta" />
             </a>
             <a href="https://medium.com/@busrahazer" target="_blank">
-                <img src="medium.png" alt="Medium" />
+                <img src="medium.gif" alt="Medium" />
             </a>
         </div>
     </footer>

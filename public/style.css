@@ -1,85 +1,195 @@
-html {
-  scroll-behavior: smooth;
+:root {
+  --soft-bg: #f4f8db	; /* pastel sarımsı örnek, istersen başka renk öneririm */
+  --text-color: #333;
+  --accent-color: #c6984d;
 }
 
-body {
-    font-family: Arial, Helvetica, sans-serif;
-    padding: 2rem;
-    background-color: #f2f2f2;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body, html {
+  height: 100%;
+  width: 100%;
+  overflow-x: hidden;
+  font-family: 'Arial', sans-serif;
+  scroll-behavior: smooth;
+  background-color: var(--soft-bg);
+  color: var(--text-color);
 }
 
 header {
-    background-color: #b2e433;
-    padding: 10px 0;
+  position: absolute;
+  top: 20px;
+  right: 40px;
+  padding: 20px;
+  z-index: 10;
 }
 
-.nav {
-    display: flex;
-    justify-content: center;
-    list-style: none;
-    padding: 0;
-    margin: 0;
+.navbar ul {
+  display: flex;
+  gap: 24px;
+  list-style: none;
 }
 
-.nav li {
-    margin:  0 15px;
+.navbar a {
+  text-decoration: none;
+  color: var(--text-color);
+  font-size: 1.1rem;
+  font-weight: bold;
+  padding: 6px 10px;
+  border-radius: 6px;
+  transition: background 0.3s;
 }
 
-.nav-link {
-    color: white;
-    text-decoration: none;
-    font-weight: bold;
+.navbar a:hover {
+  background-color: var(--accent-color);
+  color: white;
 }
 
-.nav-link:hover,
-.nav-link.active {
-    text-decoration: underline;
-    color: #ffd700;
+.hero {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-main {
-    padding: 20px;
-    max-width: 800px;
-    margin: auto;
-    background-color: white;
-    box-shadow: 0 0 10px rgba(59, 168, 101, 0.1);
-    margin-top: 20px;
-    border-radius: 10px;
+.hero-title {
+  font-size: 3.5rem;
+  text-align: center;
+  font-weight: bold;
+}
+.about-section {
+  padding: 80px 10%;
+  background-color: var(--soft-bg);
+  display: flex;
+  justify-content: center;
 }
 
-.section.hidden {
-    display: none;
+.about-content {
+  display: flex;
+  align-items: center;
+  gap: 50px;
+  max-width: 1000px;
+  width: 100%;
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  padding: 40px;
 }
 
-.profile-img {
-    width: 150px;
-    border-radius: 50%;
-    display: block;
-    margin: 20px 0;
+.about-text {
+  flex: 1;
+  font-size: 1.1rem;
+  color: #333;
+}
+
+.about-text h2 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  color: var(--accent-color);
+}
+
+.about-image {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.about-image img {
+  max-width: 250px;
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+  object-fit: cover;
+}
+
+.projects-section {
+  padding: 80px 10%;
+  background-color: white;
+  text-align: center;
+}
+
+.section-title {
+  font-size: 2.5rem;
+  margin-bottom: 40px;
+  color: var(--accent-color);
+}
+
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 30px;
+}
+
+.project-card {
+  background-color: var(--soft-bg);
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 250px;
+}
+
+.project-card:hover {
+  transform: translateY(-5px);
+}
+
+.project-card h3 {
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.project-card p {
+  font-size: 0.95rem;
+  color: #555;
+  flex-grow: 1;
+}
+
+.tech {
+  margin-top: 10px;
+  display: inline-block;
+  font-size: 0.85rem;
+  color: #777;
+  background-color: #fff;
+  padding: 4px 8px;
+  border-radius: 6px;
+  border: 1px solid #ddd;
 }
 
 footer {
-    background-color: #333;
-    color: wheat;
-    padding: 30px 0;
-    text-align: center;
-    margin-top: 50px;
+  background-color: var(--soft-bg);
+  padding: 60px 0;
+  text-align: center;
+}
+
+footer h2 {
+  font-size: 2rem;
+  color: var(--text-color);
+  margin-bottom: 20px;
 }
 
 .social-icons {
-    display: flex;
-    justify-content: center;
-    gap: 30px;
-    margin-top: 15px;
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  flex-wrap: wrap;
+  padding-top: 10px;
 }
 
 .social-icons img {
-    width: 40px;
-    height: 40px;
-    transition: transform 0.3 ease;
+  width: 48px;
+  height: 48px;
+  object-fit: contain;
+  border-radius: 8px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.social-icons img:hoover {
-    transform: scale(1.2);
-    cursor: pointer;
+.social-icons img:hover {
+  transform: scale(1.15);
+  box-shadow: 0 0 8px rgba(0,0,0,0.15);
 }
