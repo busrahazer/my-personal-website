@@ -232,6 +232,24 @@ header {
   flex-grow: 1;
 }
 
+.project-link {
+  display: inline-block;
+  margin-top: 12px;
+  padding: 8px 16px;
+  background-color: var(--accent-color);
+  color: white;
+  border-radius: 6px;
+  font-weight: bold;
+  font-size: 0.95rem;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+
+.project-link:hover {
+  background-color: #ff6f00; /* koyu turuncu hover */
+}
+
+
 .tech {
   margin-top: 10px;
   display: inline-block;
@@ -264,8 +282,8 @@ footer h2 {
 }
 
 .social-icons img {
-  width: 48px;
-  height: 48px;
+  width: 40px;
+  height: 40px;
   object-fit: contain;
   border-radius: 8px;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
