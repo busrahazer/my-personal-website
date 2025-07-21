@@ -293,3 +293,17 @@ footer h2 {
   transform: scale(1.15);
   box-shadow: 0 0 8px rgba(0,0,0,0.15);
 }
+
+.pixel-character {
+  position: fixed;
+  bottom: 40px;
+  left: 40px;
+  width: 100px;
+  z-index: 10;
+}
+
+.pixel-character img {
+  width: 100%;
+  image-rendering: pixelated;
+}
+
