@@ -1,94 +1,178 @@
-// NAVİGASYON
+/**
+ * animation.js
+ * Enchantress karakter animasyonlarını web site hareketlerine entegre eder.
+ * Karakterin animasyonları: idle, walk, run, die, attack
+ * Animasyonlar PNG sprite sheet olarak varsayılmıştır.
+ */
 document.querySelectorAll('.nav-link').forEach(link => {
     link.addEventListener('click', function (e) {
-        const href = link.getAttribute('href');
+      const href = link.getAttribute('href');
 
-        if (href === '#footer') {
-            e.preventDefault();
-            document.querySelector('footer').scrollIntoView({ behavior: 'smooth' });
+      if (href === '#footer') {
+        e.preventDefault();
+        document.querySelector('footer').scrollIntoView({ behavior: 'smooth' });
 
-            document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
-            link.classList.add('active');
-        }
+        document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+        link.classList.add('active');
+      }
     });
+  });
+
+// CANVAS OLUŞTUR
+const canvas = document.createElement('canvas');
+document.body.appendChild(canvas);
+const ctx = canvas.getContext('2d');
+
+// Tam ekran ayarla
+function resizeCanvas() {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+}
+window.addEventListener('resize', resizeCanvas);
+resizeCanvas(); // İlk başta çalıştır
+
+// SPRITE TANIMLARI
+const sprites = {
+  idle:   { src: 'img/piskel/idle.png',   frames: 6, loop: true },
+  walk:   { src: 'img/piskel/walk.png',   frames: 8, loop: true },
+  run:    { src: 'img/piskel/run.png',    frames: 8, loop: true },
+  attack: { src: 'img/piskel/attack.png', frames: 6, loop: false },
+  die:    { src: 'img/piskel/die.png',    frames: 5, loop: false },
+};
+
+let images = {};
+let loaded = 0;
+let currentAnim = 'idle';
+let frame = 0;
+let animSpeed = 0.15;
+let lastFrameTime = 0;
+let isDying = false;
+let isAttacking = false;
+
+// Karakter pozisyonu
+let charX = canvas.width / 2;
+let charY = canvas.height / 2;
+let targetX = charX;
+let targetY = charY;
+
+// Mouse hızı
+let lastMouse = { x: charX, y: charY, time: Date.now() };
+let mouseSpeed = 0;
+
+// SPRITE'LARI YÜKLE
+Object.keys(sprites).forEach(key => {
+  const img = new Image();
+  img.src = sprites[key].src;
+  img.onload = () => {
+    loaded++;
+    images[key] = img;
+  };
 });
 
-// ANİMASYONLAR
-window.addEventListener('DOMContentLoaded', () => {
-    const girl = document.getElementById("pixelGirl");
-    if (!girl) {
-        console.warn("pixelGirl bulunamadı!");
-        return;
+// MOUSE HAREKETİ
+window.addEventListener('mousemove', e => {
+  const now = Date.now();
+  targetX = e.clientX;
+  targetY = e.clientY;
+
+  const dx = targetX - lastMouse.x;
+  const dy = targetY - lastMouse.y;
+  const dt = now - lastMouse.time;
+  mouseSpeed = Math.sqrt(dx * dx + dy * dy) / dt;
+
+  lastMouse = { x: targetX, y: targetY, time: now };
+
+  if (!isAttacking && !isDying) {
+    if (mouseSpeed > 0.5) {
+      currentAnim = 'run';
+      animSpeed = 0.25;
+    } else if (mouseSpeed > 0.05) {
+      currentAnim = 'walk';
+      animSpeed = 0.15;
+    } else {
+      currentAnim = 'idle';
+      animSpeed = 0.1;
     }
-
-    // --- EL SALLAMA ---
-    let waving = true;
-    let waveFrame = 1;
-    const waveInterval = setInterval(() => {
-        if (!waving) return;
-        waveFrame = waveFrame === 1 ? 2 : 1;
-        girl.src = `img/pixel-elsallama${waveFrame}.png`;
-    }, 500);
-
-    // --- YÜRÜME ---
-    let walkIndex = 1;
-    let walking = false;
-    let walkInterval;
-
-    function startWalking() {
-        waving = false;
-        clearInterval(waveInterval);
-        if (walking) return;
-        walking = true;
-        walkInterval = setInterval(() => {
-            walkIndex = walkIndex % 4 + 1;
-            girl.src = `img/pixel-yurume${walkIndex}.png`;
-        }, 200);
-    }
-
-    function stopWalking() {
-        walking = false;
-        clearInterval(walkInterval);
-        girl.src = "img/pixel-duzdurus1.png";
-    }
-
-    document.querySelectorAll('.project-card').forEach(card => {
-        card.addEventListener('mouseenter', () => startWalking());
-        card.addEventListener('mouseleave', () => {
-            stopWalking();
-            waving = true;
-        });
-    });
-
-    // --- İNİŞ ANİMASYONU ---
-    function playLandingAnimation() {
-        const frames = [
-            "img/pixel-inis1.png",
-            "img/pixel-inis2.png",
-            "img/pixel-inis3.png",
-            "img/pixel-inis4.png"
-        ];
-        let index = 0;
-        const interval = setInterval(() => {
-            girl.src = frames[index];
-            index++;
-            if (index >= frames.length) {
-                clearInterval(interval);
-                girl.src = "img/pixel-duzdurus1.png";
-            }
-        }, 200);
-    }
-
-    // --- SCROLL TETİKLEYİCİ ---
-    let landingPlayed = false;
-    window.addEventListener('scroll', () => {
-        const aboutSection = document.getElementById("about");
-        if (!aboutSection) return;
-
-        const top = aboutSection.getBoundingClientRect().top;
-        if (top < window.innerHeight / 2 && !landingPlayed) {
-            landingPlayed = true;
-            playLandingAnimation();
-        }
-    });
+  }
 });
+
+// TIKLAMA — ATTACK ANİMASYONU
+window.addEventListener('click', () => {
+  if (!isDying) {
+    currentAnim = 'attack';
+    frame = 0;
+    isAttacking = true;
+  }
+});
+
+// SCROLL — DIE ANİMASYONU
+window.addEventListener('scroll', () => {
+  const maxScroll = document.body.scrollHeight - window.innerHeight;
+  const scrollY = window.scrollY;
+
+  if (scrollY >= maxScroll - 10 && !isDying) {
+    currentAnim = 'die';
+    frame = 0;
+    isDying = true;
+  }
+});
+
+// ANİMASYON ÇİZİMİ
+function draw() {
+  if (loaded < Object.keys(sprites).length) {
+    requestAnimationFrame(draw);
+    return;
+  }
+
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+  // Konum güncelle
+  charX += (targetX - charX) * animSpeed;
+  charY += (targetY - charY) * animSpeed;
+
+  const sprite = sprites[currentAnim];
+  const img = images[currentAnim];
+  const frameWidth = img.width / sprite.frames;
+
+  ctx.drawImage(
+    img,
+    Math.floor(frame) * frameWidth, 0, frameWidth, img.height,
+    charX - frameWidth / 2, charY - img.height / 2,
+    frameWidth, img.height
+  );
+
+  // Frame ilerletme
+  if (Date.now() - lastFrameTime > 1000 / 24) {
+    frame += animSpeed * 2;
+    if (frame >= sprite.frames) {
+      if (sprite.loop) {
+        frame = 0;
+      } else {
+        frame = sprite.frames - 1;
+
+        if (currentAnim === 'attack') {
+          isAttacking = false;
+          currentAnim = mouseSpeed > 0.5 ? 'run' : mouseSpeed > 0.05 ? 'walk' : 'idle';
+          frame = 0;
+        }
+
+        if (currentAnim === 'die') {
+          // Karakter ölü kaldı, tekrar animasyon başlamaz
+        }
+      }
+    }
+    lastFrameTime = Date.now();
+  }
+
+  requestAnimationFrame(draw);
+}
+
+// YÜKLENME TAMAMSA BAŞLAT
+function checkLoaded() {
+  if (loaded >= Object.keys(sprites).length) {
+    draw();
+  } else {
+    setTimeout(checkLoaded, 100);
+  }
+}
+checkLoaded();
