@@ -307,3 +307,10 @@ footer h2 {
   image-rendering: pixelated;
 }
 
+canvas {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  z-index: 9999;
+  pointer-events: none; /* tıklamaları engellemesin */
+}
