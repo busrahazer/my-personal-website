@@ -1,43 +1,41 @@
-/**
- * animation.js
- * Enchantress karakter animasyonlarını web site hareketlerine entegre eder.
- * Karakterin animasyonları: idle, walk, run, die, attack
- * Animasyonlar PNG sprite sheet olarak varsayılmıştır.
- */
+// Navigasyon – dokunma!
 document.querySelectorAll('.nav-link').forEach(link => {
-    link.addEventListener('click', function (e) {
-      const href = link.getAttribute('href');
+  link.addEventListener('click', function (e) {
+    const href = link.getAttribute('href');
 
-      if (href === '#footer') {
-        e.preventDefault();
-        document.querySelector('footer').scrollIntoView({ behavior: 'smooth' });
+    if (href === '#footer') {
+      e.preventDefault();
+      document.querySelector('footer').scrollIntoView({ behavior: 'smooth' });
 
-        document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
-        link.classList.add('active');
-      }
-    });
+      document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+      link.classList.add('active');
+    }
   });
+});
 
-// CANVAS OLUŞTUR
+// CANVAS
 const canvas = document.createElement('canvas');
 document.body.appendChild(canvas);
 const ctx = canvas.getContext('2d');
 
-// Tam ekran ayarla
 function resizeCanvas() {
   canvas.width = window.innerWidth;
   canvas.height = window.innerHeight;
 }
 window.addEventListener('resize', resizeCanvas);
-resizeCanvas(); // İlk başta çalıştır
+resizeCanvas();
 
-// SPRITE TANIMLARI
+// SPRITE'lar
 const sprites = {
-  idle:   { src: 'img/piskel/idle.png',   frames: 6, loop: true },
-  walk:   { src: 'img/piskel/walk.png',   frames: 8, loop: true },
-  run:    { src: 'img/piskel/run.png',    frames: 8, loop: true },
-  attack: { src: 'img/piskel/attack.png', frames: 6, loop: false },
-  die:    { src: 'img/piskel/die.png',    frames: 5, loop: false },
+  idle:     { src: 'img/piskel/idle.png',     frames: 6, loop: true },
+  walk:     { src: 'img/piskel/walk.png',     frames: 8, loop: true },
+  run:      { src: 'img/piskel/run.png',      frames: 8, loop: true },
+  attack:   { src: 'img/piskel/attack1.png',  frames: 6, loop: false },
+  die:      { src: 'img/piskel/die.png',      frames: 5, loop: false },
+  attack2:  { src: 'img/piskel/attack2.png',  frames: 10, loop: false },
+  attack4:  { src: 'img/piskel/attack4.png',  frames: 3, loop: false },
+  jump:     { src: 'img/piskel/jump.png',     frames: 8, loop: false },
+  hurt:     { src: 'img/piskel/hurt.png',     frames: 2, loop: false },
 };
 
 let images = {};
@@ -49,17 +47,18 @@ let lastFrameTime = 0;
 let isDying = false;
 let isAttacking = false;
 
-// Karakter pozisyonu
-let charX = canvas.width / 2;
-let charY = canvas.height / 2;
+// Pozisyon
+let charX = window.innerWidth / 2;
+let charY = window.innerHeight / 2;
 let targetX = charX;
 let targetY = charY;
 
-// Mouse hızı
+// Mouse
 let lastMouse = { x: charX, y: charY, time: Date.now() };
 let mouseSpeed = 0;
+let lastMouseMoveTime = Date.now();
 
-// SPRITE'LARI YÜKLE
+// Sprite yükle
 Object.keys(sprites).forEach(key => {
   const img = new Image();
   img.src = sprites[key].src;
@@ -69,7 +68,7 @@ Object.keys(sprites).forEach(key => {
   };
 });
 
-// MOUSE HAREKETİ
+// Mouse hareket
 window.addEventListener('mousemove', e => {
   const now = Date.now();
   targetX = e.clientX;
@@ -81,6 +80,7 @@ window.addEventListener('mousemove', e => {
   mouseSpeed = Math.sqrt(dx * dx + dy * dy) / dt;
 
   lastMouse = { x: targetX, y: targetY, time: now };
+  lastMouseMoveTime = now;
 
   if (!isAttacking && !isDying) {
     if (mouseSpeed > 0.5) {
@@ -96,7 +96,7 @@ window.addEventListener('mousemove', e => {
   }
 });
 
-// TIKLAMA — ATTACK ANİMASYONU
+// Mouse tıklama — attack1
 window.addEventListener('click', () => {
   if (!isDying) {
     currentAnim = 'attack';
@@ -105,19 +105,51 @@ window.addEventListener('click', () => {
   }
 });
 
-// SCROLL — DIE ANİMASYONU
+// Mouse basılı — attack4
+window.addEventListener('mousedown', () => {
+  if (!isDying) {
+    currentAnim = 'attack4';
+    frame = 0;
+    isAttacking = true;
+  }
+});
+
+// Hareketsizlik — attack2
+setInterval(() => {
+  if (!isAttacking && !isDying && Date.now() - lastMouseMoveTime > 3000) {
+    currentAnim = 'attack2';
+    frame = 0;
+    isAttacking = true;
+  }
+}, 1000);
+
+// Scroll ile jump / die / hurt
+let jumped = false;
 window.addEventListener('scroll', () => {
-  const maxScroll = document.body.scrollHeight - window.innerHeight;
   const scrollY = window.scrollY;
+  const maxScroll = document.body.scrollHeight - window.innerHeight;
+
+  if (scrollY > 100 && !jumped && !isDying) {
+    currentAnim = 'jump';
+    frame = 0;
+    isAttacking = true;
+    jumped = true;
+  }
 
   if (scrollY >= maxScroll - 10 && !isDying) {
     currentAnim = 'die';
     frame = 0;
     isDying = true;
   }
+
+  if (scrollY < 50 && isDying) {
+    currentAnim = 'hurt';
+    frame = 0;
+    isDying = false;
+  }
 });
 
-// ANİMASYON ÇİZİMİ
+// Çizim
 function draw() {
   if (loaded < Object.keys(sprites).length) {
     requestAnimationFrame(draw);
@@ -141,7 +173,7 @@ function draw() {
     frameWidth, img.height
   );
 
-  // Frame ilerletme
+  // Frame ilerlet
   if (Date.now() - lastFrameTime > 1000 / 24) {
     frame += animSpeed * 2;
     if (frame >= sprite.frames) {
@@ -150,14 +182,14 @@ function draw() {
       } else {
         frame = sprite.frames - 1;
 
-        if (currentAnim === 'attack') {
+        if (['attack', 'attack2', 'attack4', 'jump', 'hurt'].includes(currentAnim)) {
           isAttacking = false;
           currentAnim = mouseSpeed > 0.5 ? 'run' : mouseSpeed > 0.05 ? 'walk' : 'idle';
           frame = 0;
         }
 
         if (currentAnim === 'die') {
-          // Karakter ölü kaldı, tekrar animasyon başlamaz
+          // Ölü kaldı
         }
       }
     }
@@ -167,7 +199,6 @@ function draw() {
   requestAnimationFrame(draw);
 }
 
-// YÜKLENME TAMAMSA BAŞLAT
 function checkLoaded() {
   if (loaded >= Object.keys(sprites).length) {
     draw();

@@ -13,11 +13,11 @@ resizeCanvas(); // İlk başta çalıştır
 
 // SPRITE TANIMLARI
 const sprites = {
-  idle:   { src: 'img/idle.png',   frames: 6, loop: true },
-  walk:   { src: 'img/walk.png',   frames: 8, loop: true },
-  run:    { src: 'img/run.png',    frames: 8, loop: true },
-  attack: { src: 'img/attack.png', frames: 6, loop: false },
-  die:    { src: 'img/die.png',    frames: 5, loop: false },
+  idle:   { src: 'img-test/idle.png',   frames: 6, loop: true },
+  walk:   { src: 'img-test/walk.png',   frames: 8, loop: true },
+  run:    { src: 'img-test/run.png',    frames: 8, loop: true },
+  attack: { src: 'img-test/attack.png', frames: 6, loop: false },
+  die:    { src: 'img-test/die.png',    frames: 5, loop: false },
 };
 
 let images = {};
