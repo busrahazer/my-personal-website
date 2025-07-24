@@ -1,7 +1,20 @@
 :root {
-  --soft-bg: #fef3e3;
-  --text-color: #4e342e;
-  --accent-color: #c68642;
+  --primary-red: #b73636;
+  --soft-red: #d16060;
+
+  --mustard: #c8aa40;
+  --light-mustard: #e3c766;
+
+  --forest-green: #568c57;
+
+  --lightsaber-blue: #44c7ff;
+
+  --base-beige: #f7f2e6;
+  --dark-ink: #1e1e1e;
+
+  --soft-bg: var(--base-beige);
+  --text-color: var(--dark-ink);
+  --accent-color: var(--primary-red);
 }
 
 * {
@@ -114,9 +127,9 @@ header {
   transition: background 0.3s ease;
 }
 
-.quick-button:nth-child(1) { background-color: #8d5524; }
-.quick-button:nth-child(2) { background-color: #c68642; }
-.quick-button:nth-child(3) { background-color: #e0ac69; }
+.quick-button:nth-child(1) { background-color: var(--primary-red); }
+.quick-button:nth-child(2) { background-color: var(--soft-red); }
+.quick-button:nth-child(3) { background-color: #ef9f9f; }
 
 .quick-button:hover {
   filter: brightness(1.1);
@@ -228,7 +241,7 @@ header {
 }
 
 .project-link:hover {
-  background-color: #ff6f00;
+  background-color: #ed7373;
 }
 
 .tech {
@@ -240,6 +253,61 @@ header {
   padding: 4px 8px;
   border-radius: 6px;
   border: 1px solid #ddd;
+}
+
+/* BLOG SECTION */
+.blog-section {
+  padding: 80px 10%;
+  background-color: white;
+  text-align: center;
+}
+
+.blog-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px,1fr));
+  gap: 30px;
+}
+
+.blog-card {
+  background-color: var(--soft-bg);
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 200px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.blog-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.15);
+}
+
+.blog-card h3 {
+  font-size: 1.3rem;
+  color: var(--accent-color);
+  margin-bottom: 10px;
+}
+
+.blog-card p {
+  font-size: 0.95rem;
+  color: #555;
+  flex-grow: 1;
+  margin-bottom: 16px;
+  line-height: 1.4;
+}
+
+.read-more {
+  text-decoration: none;
+  font-weight: bold;
+  color: var(--dark-ink);
+  transition: color 0.2s ease;
+}
+
+.read-more:hover {
+  color: var(--primary-red);
 }
 
 /* FOOTER */
