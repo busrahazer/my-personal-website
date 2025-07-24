@@ -5,18 +5,37 @@
     <meta name="viewport" content=""width=device-width, initiai-scale="1.0"/>
     <title>Mine Büşra Hazer</title>
     <link rel="stylesheet" href="style.css" />
+    <!-- LANGUAGE 
+    <script src="https://unpkg.com/i18next@21.6.16/i18next.min.js"></script>
+    <script src="https://unpkg.com/i18next-browser-languagedetector@6.1.4/i18nextBrowserLanguageDetector.min.js"></script>
+    <script src="https://unpkg.com/jquery@3.6.0/dist/jquery.min.js"></script>
+    <script src="https://unpkg.com/jquery-i18next@1.2.1/jquery-i18next.min.js"></script>
+    -->
 </head> 
 <body>
-    <header>
+    <header>        
         <nav class="navbar">
             <ul>
-                <li><a href="#about">Hakkında</a></li>
-                <li><a href="#projects">Projelerim</a></li>
-                <li><a href="#blog">Blog</a></li>
-                <li><a href="#footer">İletişim</a></li>
+                <li><a href="#about">Hakkında</li>
+                <li><a href="#projects">Projelerim</li>
+                <li><a href="#blog">Blog</li>
+                <li><a href="#footer">İletişim</li>
             </ul>
+            <!-- LANG SWITCHER
+            <ul>
+                <li><a href="#about" data-i18n="nav_about">Hakkında</li>
+                <li><a href="#projects" data-i18n="nav_projects">Projelerim</li>
+                <li><a href="#blog" data-i18n="nav_blog">Blog</li>
+                <li><a href="#footer" data-i18n="nav_contact">İletişim</li>
+            </ul>
+            -->
     </header>
-    
+    <!--    
+<select id="langSwitcher">
+  <option value="tr">Türkçe</option>
+  <option value="en">English</option>
+</select>
+-->  
 <section class="landing-section">
   <div class="left">
     <h1 class="landing-name">Mine Büşra Hazer</h1>
@@ -37,7 +56,6 @@
     </div>
   </div>
 </section>
-
 
 <main>
     <section id="about" class="about-section">

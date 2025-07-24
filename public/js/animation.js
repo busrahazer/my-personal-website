@@ -13,6 +13,13 @@ document.querySelectorAll('.nav-link').forEach(link => {
   });
 });
 
+// Dil Değiştirici
+document.getElementById('langSwitcher').addEventListener('change', function () {
+  i18next.changeLanguage(this.value, () => {
+    $('body').localize();
+  });
+});
+
 // CANVAS
 const canvas = document.createElement('canvas');
 document.body.appendChild(canvas);
