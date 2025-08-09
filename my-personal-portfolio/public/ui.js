@@ -64,10 +64,10 @@
             const header = document.querySelector('header');
             window.addEventListener('scroll', () => {
                 if (window.scrollY > 100) {
-                    header.style.background = 'rgba(0, 0, 0, 0.9)';
+                    // header.style.background = 'rgba(0, 0, 0, 0.9)';
                     header.style.backdropFilter = 'blur(20px)';
                 } else {
-                    header.style.background = 'rgba(255, 255, 255, 0.1)';
+                    // header.style.background = 'rgba(255, 255, 255, 0.1)';
                     header.style.backdropFilter = 'blur(10px)';
                 }
             });
