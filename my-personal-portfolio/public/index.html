@@ -114,7 +114,7 @@
 
     <!-- Projects Section -->
     <section id="projeler">
-        <h2>Projeler</h2>
+        <h2>Projects</h2>
         <div class="projects-grid">
             <div class="project-card">
                 <div class="project-image">🛒</div>
@@ -158,6 +158,31 @@
             <div class="project-card">
                 <div class="project-image">📱</div>
                 <div class="project-content">
+                    <h3>IoT Communication Build with C++/QT</h3>
+                    <p>In this project, I set up an end-to-end lightweight IoT communication infrastructure using the MQTT protocol
+                        and Mosquitto broker. I wrote my own MqSystem class based on Qt's QMqttClient class; I implemented APIs such
+                        as connectBroker, disconnectBroker, pub, sub, unsub, and managed all message flows in an event-driven manner
+                        using the C++ signal-slot architecture. I conducted tests from broker setup (Mosquitto + Mosquitto clients) to
+                        message publishing/subscription; I designed the structure/flow to process and log incoming messages. I later used
+                        this basic infrastructure for Wi-Fi and Bluetooth-based data transfer and device integration—in other words, I am
+                        the person who both set up the system and integrated it into the project and deployed it in the field..</p>
+                    <div class="tech-tags">
+                        <span class="tech-tag">C++/QT</span>
+                        <span class="tech-tag">MQTT</span>
+                        <!-- <span class="tech-tag">Google Generative AI Embeddings</span> -->
+                        <span class="tech-tag">Mosquitto</span>
+                        <span class="tech-tag">MQ Broker</span>
+                        <span class="tech-tag">QMqttClient</span>
+                        <span class="tech-tag">QML</span>
+                        <span class="tech-tag">Wifi Integration</span>
+                        <span class="tech-tag">Blueetooth Integration</span>
+                    </div>
+                    <a href="https://medium.com/@busrahazer/i-built-a-system-with-mqtt-f867e754968d" class="project-link">Review project →</a>
+                </div>
+            </div>
+            <div class="project-card">
+                <div class="project-image">📱</div>
+                <div class="project-content">
                     <h3>Gallery of Memories</h3>
                     <p>The personal memory gallery application I developed with Kotlin allows users to store
                        their memories with photos and notes. This project strengthened my practice in user
@@ -195,27 +220,35 @@
                 <div class="blog-date">9 August 2025</div>
                 <p>“Have you ever understood a topic better when your friend explained it to you than when you studied it for days?”
                 Based on this idea, I developed the ILTeach project, in which I turned artificial intelligence into a learning companion
-                that explains topics just like a friend would. I described both the technical details of the system I designed from
-                scratch during the hackathon process and its impact on the learning experience on Medium.</p>
+                that explains topics just like a friend would. During the hackathon, I explained the technical details of the system I
+                designed from scratch and the learning experience.</p>
                 <a href="https://medium.com/@busrahazer/sohbet-ederek-%C3%B6%C4%9Frenmenin-g%C3%BCc%C3%BC-ilteach-ile-etkile%C5%9Fimli-ders-deneyimi-b9522711ac91" class="read-more">Read More →</a>
             </article>
             <article class="blog-post">
-                <h3>React Performance Optimizasyonu</h3>
-                <div class="blog-date">28 Haziran 2025</div>
-                <p>React uygulamalarında performansı artırmak için kullanabileceğiniz teknikler: memo, useMemo, useCallback ve daha fazlası.</p>
-                <a href="#" class="read-more">Devamını Oku →</a>
+                <h3>My First Step to the Cloud: Real-Time Data Uploading with AWS + Python</h3>
+                <div class="blog-date">10 July 2024</div>
+                <p>I took my first step into the cloud world by adding AWS support to a desktop application. Using the DynamoDB database,
+                    the boto3 library, and Python, I set up a system that uploads my data to the cloud every 5 seconds.
+                    I explained step by step how to set up this structure, which automatically creates tables, reads parameters from a file,
+                    and updates data in real time.</p>
+                <a href="https://medium.com/@busrahazer/aws-ve-dynamodb-ile-neler-yapt%C4%B1m-f4e85171a0fa" class="read-more">Read More →</a>
             </article>
             <article class="blog-post">
-                <h3>Mikroservis Mimarisi ile Ölçeklenebilir Sistemler</h3>
-                <div class="blog-date">10 Haziran 2025</div>
-                <p>Monolitik yapıdan mikroservislere geçiş süreci, avantajları ve dikkat edilmesi gereken noktalara dair deneyimlerim.</p>
-                <a href="#" class="read-more">Devamını Oku →</a>
+                <h3>From MQTT to Bluetooth: Building an IoT Communication System from Scratch with C++/QT </h3>
+                <div class="blog-date">19 April 2024</div>
+                <p>In this article, I explained how I built an IoT structure from scratch: Mosquitto broker setup, the MqSystem
+                    class I built on the C++ side with QMqttClient, methods for testing publish/subscribe flows, and my approach to
+                    data storage with MongoDB. I also show how I managed messages within the application using signals and slots in
+                    this basic system with sample code snippets.</p>
+                <a href="https://medium.com/@busrahazer/i-built-a-system-with-mqtt-f867e754968d" class="read-more">Read More →</a>
             </article>
             <article class="blog-post">
-                <h3>Docker ile Development Environment Yönetimi</h3>
-                <div class="blog-date">22 Mayıs 2025</div>
-                <p>Docker containerları kullanarak tutarlı ve taşınabilir geliştirme ortamları oluşturmanın yolları ve en iyi pratikler.</p>
-                <a href="#" class="read-more">Devamını Oku →</a>
+                <h3>Easy Dependency Management in Python Projects: Requirement File</h3>
+                <div class="blog-date">26 April 2024</div>
+                <p>Instead of installing the libraries you use in Python projects one by one, you can install them all with a single command!
+                    With the Requirements file, you can list all the dependencies in the project and quickly install them with the
+                    pip install -r command. In my article, I explained how to create this file and how it can make your projects easier.</p>
+                <a href="https://medium.com/@busrahazer/create-a-requirements-file-d048358444c3" class="read-more">Read More →</a>
             </article>
         </div>
     </section>
