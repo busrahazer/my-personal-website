@@ -132,5 +132,61 @@
             setTimeout(type, 1000);
         }
 
-        // Uncomment to enable typing effect
-        // window.addEventListener('load', typeWriter);
+        window.addEventListener('load', typeWriter);
+        
+        // Dynamic Typing Effect for Hero Title
+        function typeWriter() {
+            const textH1 = "Mine Büşra Hazer";
+            const textSubtitle = "C++/QT Developer & Data Scientist";
+            const textSubsubtitle = "Python & AI";
+            
+            const elementH1 = document.querySelector('.hero-content h1');
+            const elementSubtitle = document.querySelector('.hero-content .subtitle');
+            const elementSubsubtitle = document.querySelector('.hero-content .subsubtitle');
+            
+            let i = 0;
+            
+            elementH1.textContent = "";
+            elementSubtitle.textContent = "";
+            elementSubsubtitle.textContent = "";
+            
+            setTimeout(() => {
+                typeH1();
+            }, 1000);
+            
+            function typeH1() {
+                if (i < textH1.length) {
+                    elementH1.textContent += textH1.charAt(i);
+                    i++;
+                    setTimeout(typeH1, 100);
+                } else {
+                    i = 0;
+                    elementH1.style.animation = 'none';
+                    setTimeout(typeSubtitle, 500); 
+                }
+            }
+            
+            function typeSubtitle() {
+                if (i < textSubtitle.length) {
+                    elementSubtitle.textContent += textSubtitle.charAt(i);
+                    i++;
+                    setTimeout(typeSubtitle, 50);
+                } else {
+                    i = 0;
+                    elementSubtitle.style.animation = 'none'; 
+                    setTimeout(typeSubsubtitle, 500); 
+                }
+            }
+            
+            function typeSubsubtitle() {
+                if (i < textSubsubtitle.length) {
+                    elementSubsubtitle.textContent += textSubsubtitle.charAt(i);
+                    i++;
+                    setTimeout(typeSubsubtitle, 50);
+                } else {
+                    elementSubsubtitle.style.animation = 'none'; 
+                }
+            }
+        }
+
+        window.addEventListener('load', typeWriter);
