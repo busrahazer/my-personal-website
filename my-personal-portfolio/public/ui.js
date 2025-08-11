@@ -137,8 +137,8 @@
         // Dynamic Typing Effect for Hero Title
         function typeWriter() {
             const textH1 = "Mine Büşra Hazer";
-            const textSubtitle = "C++/QT Developer & Data Scientist";
-            const textSubsubtitle = "Python & AI";
+            const textSubtitle = "Software Engineer · Embedded Systems · Data Analytics";
+            const textSubsubtitle = "C++/Qt · Python & AI · M.Sc. in Computer Engineering";
             
             const elementH1 = document.querySelector('.hero-content h1');
             const elementSubtitle = document.querySelector('.hero-content .subtitle');
