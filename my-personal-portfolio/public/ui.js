@@ -89,104 +89,27 @@
             });
         }
 
-        // Welcome Screen Animation
-        function initWelcomeScreen() {
-            const welcomeScreen = document.getElementById('welcomeScreen');
-            
-            setTimeout(() => {
-                welcomeScreen.classList.add('fade-out');
-                document.body.style.overflow = 'auto';
-                
+        // Add a function to animate hero section on load
+        function animateHero() {
+            let delay = 0.5;
+            const heroElements = document.querySelectorAll('.hero-text h1, .hero-text .subtitle, .hero-text .subsubtitle, .hero-text .description, .hero-text .cta-button, .hero-visual');
+            heroElements.forEach(el => {
                 setTimeout(() => {
-                    welcomeScreen.style.display = 'none';
-                }, 1000);
-            }, 3000);
+                    el.style.opacity = '1';
+                    el.style.transform = 'translateY(0)';
+                }, delay * 1000);
+                delay += 0.2;
+            });
         }
 
         // Initialize all functions
         document.addEventListener('DOMContentLoaded', () => {
-            document.body.style.overflow = 'hidden'; // Prevent scrolling during welcome
-            initWelcomeScreen();
             createParticles();
             smoothScroll();
             observeElements();
             headerScrollEffect();
             parallaxEffect();
+            
         });
-
-        // Dynamic Typing Effect for Hero Title
-        function typeWriter() {
-            const text = "Adınız Soyadınız";
-            const element = document.querySelector('.hero-content h1');
-            let i = 0;
-            element.textContent = "";
-            
-            function type() {
-                if (i < text.length) {
-                    element.textContent += text.charAt(i);
-                    i++;
-                    setTimeout(type, 100);
-                }
-            }
-            
-            setTimeout(type, 1000);
-        }
-
-        window.addEventListener('load', typeWriter);
         
-        // Dynamic Typing Effect for Hero Title
-        function typeWriter() {
-            const textH1 = "Mine Büşra Hazer";
-            const textSubtitle = "Software Engineer · Embedded Systems · Data Analytics";
-            const textSubsubtitle = "C++/Qt · Python & AI · M.Sc. in Computer Engineering";
-            
-            const elementH1 = document.querySelector('.hero-content h1');
-            const elementSubtitle = document.querySelector('.hero-content .subtitle');
-            const elementSubsubtitle = document.querySelector('.hero-content .subsubtitle');
-            
-            let i = 0;
-            
-            elementH1.textContent = "";
-            elementSubtitle.textContent = "";
-            elementSubsubtitle.textContent = "";
-            
-            setTimeout(() => {
-                typeH1();
-            }, 1000);
-            
-            function typeH1() {
-                if (i < textH1.length) {
-                    elementH1.textContent += textH1.charAt(i);
-                    i++;
-                    setTimeout(typeH1, 100);
-                } else {
-                    i = 0;
-                    elementH1.style.animation = 'none';
-                    setTimeout(typeSubtitle, 500); 
-                }
-            }
-            
-            function typeSubtitle() {
-                if (i < textSubtitle.length) {
-                    elementSubtitle.textContent += textSubtitle.charAt(i);
-                    i++;
-                    setTimeout(typeSubtitle, 50);
-                } else {
-                    i = 0;
-                    elementSubtitle.style.animation = 'none'; 
-                    setTimeout(typeSubsubtitle, 500); 
-                }
-            }
-            
-            function typeSubsubtitle() {
-                if (i < textSubsubtitle.length) {
-                    elementSubsubtitle.textContent += textSubsubtitle.charAt(i);
-                    i++;
-                    setTimeout(typeSubsubtitle, 50);
-                } else {
-                    elementSubsubtitle.style.animation = 'none'; 
-                }
-            }
-        }
-
-        window.addEventListener('load', typeWriter);
+       
